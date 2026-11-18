@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nossa História ♥</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noite:#1c0e1e;
+  --noite-2:#2a1530;
+  --vinho:#4a1d3a;
+  --rosa:#ee7b96;
+  --rosa-claro:#f9c6cf;
+  --luz:#ffe3c4;
+  --papel:#fff6ef;
+  --texto:#f6e8e6;
+  --texto-suave:#cdb5c0;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--noite);
+  color:var(--texto);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.65;
+  overflow-x:hidden;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.1}
+:focus-visible{outline:2px solid var(--luz);outline-offset:3px}
+
+/* corações flutuantes */
+#coracoes{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+#coracoes span{position:absolute;bottom:-40px;color:var(--rosa);opacity:0;animation:subir linear forwards}
+@keyframes subir{
+  0%{transform:translateY(0) translateX(0) scale(.8);opacity:0}
+  12%{opacity:.5}
+  100%{transform:translateY(-110vh) translateX(var(--dx)) scale(1.2);opacity:0}
+}
+main,footer{position:relative;z-index:2}
+
+/* hero */
+.hero{
+  min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:72px 24px 56px;
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 38%,rgba(238,123,150,.22),transparent 70%),
+    radial-gradient(ellipse 80% 50% at 50% 100%,rgba(74,29,58,.9),transparent 70%);
+}
+.hero .data-topo{color:var(--texto-suave);font-size:.95rem;letter-spacing:.04em;margin-bottom:28px}
+.hero h1{font-size:clamp(3.2rem,12vw,7.5rem);font-weight:300;font-style:italic;letter-spacing:-.02em;color:var(--papel)}
+.hero .nomes{font-family:var(--serif);font-size:clamp(1.3rem,4vw,2rem);margin-top:18px;color:var(--rosa-claro)}
+.hero .sub{margin-top:10px;color:var(--texto-suave)}
+.hero .anim{opacity:0;transform:translateY(14px);animation:entra .9s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .anim:nth-child(1){animation-delay:.1s}
+.hero .anim:nth-child(2){animation-delay:.35s}
+.hero .anim:nth-child(3){animation-delay:.6s}
+.hero .anim:nth-child(4){animation-delay:.8s}
+.hero .anim:nth-child(5){animation-delay:1.1s}
+@keyframes entra{to{opacity:1;transform:none}}
+
+.contador-bloco{margin-top:52px}
+.contador-bloco .rotulo{color:var(--texto-suave);font-size:1rem;margin-bottom:14px}
+#contador{display:flex;gap:clamp(10px,3vw,28px);justify-content:center;align-items:flex-start}
+#contador div{min-width:64px}
+#contador b{display:block;font-family:var(--serif);font-weight:300;font-size:clamp(2.4rem,9vw,4.8rem);line-height:1;color:var(--luz);font-variant-numeric:tabular-nums}
+#contador small{display:block;margin-top:6px;font-size:.85rem;color:var(--texto-suave)}
+#contador i{font-style:normal;font-family:var(--serif);font-size:clamp(2rem,7vw,3.6rem);color:var(--rosa);line-height:1;opacity:.7}
+.rolar{margin-top:56px;color:var(--texto-suave);font-size:.9rem;text-decoration:none;display:inline-flex;flex-direction:column;align-items:center;gap:6px}
+.rolar::after{content:"";width:1px;height:38px;background:linear-gradient(var(--rosa),transparent)}
+
+/* seções */
+section{padding:clamp(72px,12vw,140px) 24px}
+.wrap{max-width:980px;margin:0 auto}
+.cap{display:grid;gap:clamp(32px,6vw,72px);align-items:center}
+@media(min-width:800px){
+  .cap{grid-template-columns:1fr 1fr}
+  .cap.inverso .texto{order:2}
+}
+.texto h2{font-size:clamp(2rem,5vw,3.2rem);color:var(--papel);margin-bottom:10px}
+.texto .data{color:var(--rosa);font-family:var(--serif);font-style:italic;font-size:1.15rem;margin-bottom:22px}
+.texto p{color:var(--texto);max-width:46ch}
+.texto p + p{margin-top:14px}
+.citacao{font-family:var(--serif);font-style:italic;font-size:1.25rem;line-height:1.5;color:var(--rosa-claro);margin-top:22px;padding-left:18px;border-left:2px solid var(--rosa)}
+
+/* polaroid */
+.polaroid{
+  background:var(--papel);padding:14px 14px 0;border-radius:3px;
+  box-shadow:0 24px 50px -18px rgba(0,0,0,.7);
+  transform:rotate(var(--giro,-2deg));
+  transition:transform .35s ease;
+  max-width:420px;width:100%;justify-self:center;
+}
+.polaroid:hover{transform:rotate(0) scale(1.02)}
+.polaroid .moldura{aspect-ratio:4/5;background:var(--vinho);position:relative;overflow:hidden;cursor:zoom-in}
+.polaroid img{width:100%;height:100%;object-fit:cover}
+.polaroid figcaption{
+  font-family:var(--serif);font-style:italic;color:#4a1d3a;
+  padding:14px 6px 18px;text-align:center;font-size:1.05rem;min-height:3.2em;
+}
+.vazio{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  color:var(--rosa-claro);font-size:.9rem;text-align:center;padding:16px;
+  background:repeating-linear-gradient(45deg,var(--vinho),var(--vinho) 12px,#54223f 12px,#54223f 24px);
+}
+.vazio .coracao{font-size:2rem;color:var(--rosa)}
+.vazio .dica{display:none}
+.editando .vazio .dica{display:block}
+.tem-foto .vazio{display:none}
+
+/* galeria */
+.galeria-topo{text-align:center;margin-bottom:56px}
+.galeria-topo h2{font-size:clamp(2rem,5vw,3.2rem);color:var(--papel)}
+.galeria-topo p{color:var(--texto-suave);margin-top:8px}
+.grade{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 16px}
+@media(min-width:800px){.grade{grid-template-columns:repeat(3,1fr);gap:40px 28px}}
+.grade .polaroid{max-width:none}
+.grade .polaroid:nth-child(3n+1){--giro:-2.5deg}
+.grade .polaroid:nth-child(3n+2){--giro:1.8deg;margin-top:22px}
+.grade .polaroid:nth-child(3n){--giro:-1deg}
+
+/* motivos */
+.motivos{background:linear-gradient(var(--noite),var(--noite-2) 20%,var(--noite-2) 80%,var(--noite))}
+.motivos h2{text-align:center;font-size:clamp(2rem,5vw,3.2rem);color:var(--papel);margin-bottom:48px}
+.lista-motivos{list-style:none;display:grid;gap:0;max-width:640px;margin:0 auto}
+.lista-motivos li{
+  display:flex;gap:18px;align-items:baseline;
+  padding:20px 0;border-bottom:1px solid rgba(249,198,207,.18);
+  font-family:var(--serif);font-size:clamp(1.15rem,3vw,1.45rem);font-weight:300;
+}
+.lista-motivos li::before{content:"♥";color:var(--rosa);font-size:.8em;flex:none}
+
+/* carta */
+.carta-area{text-align:center}
+.carta-area h2{font-size:clamp(2rem,5vw,3.2rem);color:var(--papel);margin-bottom:12px}
+.carta-area > .wrap > p{color:var(--texto-suave);margin-bottom:34px}
+#abrir{
+  font:inherit;font-weight:500;cursor:pointer;
+  background:var(--rosa);color:var(--noite);border:0;border-radius:999px;
+  padding:14px 32px;transition:transform .2s,background .2s;
+}
+#abrir:hover{background:var(--rosa-claro);transform:translateY(-2px)}
+.carta{
+  max-width:620px;margin:0 auto;overflow:hidden;
+  max-height:0;opacity:0;
+  transition:max-height 1.2s ease,opacity .8s ease,margin .6s ease;
+}
+.carta.aberta{max-height:1800px;opacity:1;margin-top:40px}
+.folha{
+  background:var(--papel);color:#3b1830;text-align:left;
+  padding:clamp(28px,6vw,52px);border-radius:3px;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.7);
+  font-family:var(--serif);font-size:clamp(1.05rem,2.6vw,1.25rem);line-height:1.75;font-weight:300;
+}
+.folha p + p{margin-top:1em}
+.folha .assin{margin-top:1.6em;font-style:italic;color:#8a2e55}
+
+footer{text-align:center;padding:64px 24px 90px;color:var(--texto-suave)}
+footer .coracao-final{font-size:2.4rem;color:var(--rosa);display:block;margin-bottom:10px;animation:pulsa 1.6s ease-in-out infinite}
+@keyframes pulsa{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+
+/* lightbox */
+#luz{
+  position:fixed;inset:0;background:rgba(18,8,20,.94);z-index:50;
+  display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out;
+}
+#luz.on{display:flex}
+#luz img{max-height:88vh;max-width:92vw;border-radius:3px}
+
+/* edição */
+[contenteditable="true"]{outline:1px dashed rgba(249,198,207,.5);outline-offset:4px;border-radius:2px;cursor:text}
+[contenteditable="true"]:focus{outline:2px solid var(--luz)}
+.editando .moldura{cursor:pointer}
+#barra{
+  display:none;position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);
+  z-index:60;background:#fff;color:#3b1830;border-radius:16px;padding:10px 12px;
+  box-shadow:0 12px 40px rgba(0,0,0,.5);gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;
+  max-width:calc(100vw - 20px);font-size:.9rem;
+}
+.admin #barra{display:flex}
+#barra button,#barra label{
+  font:inherit;font-size:.9rem;border:0;border-radius:10px;padding:8px 12px;cursor:pointer;
+  background:#f3e3e8;color:#3b1830;
+}
+#barra button.principal{background:#c2335f;color:#fff}
+#barra input[type=date]{font:inherit;border:1px solid #d9b7c3;border-radius:8px;padding:6px;color:#3b1830}
+#barra .on{background:#3b1830;color:#fff}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .hero .anim{opacity:1;transform:none}
+  #coracoes{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="coracoes" aria-hidden="true"></div>
+
+<main>
+  <header class="hero">
+    <p class="data-topo anim" data-edit>Dia dos Namorados · desde dezembro de 2024</p>
+    <h1 class="anim" data-edit>Nossa História</h1>
+    <p class="nomes anim" data-edit>Seu nome &amp; Nome do amor</p>
+    <p class="sub anim" data-edit>Um pedacinho do tanto que eu te amo</p>
+
+    <div class="contador-bloco anim">
+      <p class="rotulo" data-edit>Juntos há</p>
+      <div id="contador" data-inicio="2024-12-01" aria-live="off">
+        <div><b id="c-d">0</b><small>dias</small></div><i>:</i>
+        <div><b id="c-h">00</b><small>horas</small></div><i>:</i>
+        <div><b id="c-m">00</b><small>minutos</small></div><i>:</i>
+        <div><b id="c-s">00</b><small>segundos</small></div>
+      </div>
+    </div>
+    <a class="rolar anim" href="#comeco">role para ver</a>
+  </header>
+
+  <section id="comeco">
+    <div class="wrap cap">
+      <div class="texto">
+        <h2 data-edit>Nossa primeira foto juntos</h2>
+        <p class="data" data-edit>Janeiro de 2025</p>
+        <p data-edit>Conte aqui como foi esse começo. O lugar, o que vocês estavam vestindo, o que você sentiu quando a foto foi tirada.</p>
+        <p class="citacao" data-edit>“Escreva aqui uma frase que resuma esse dia.”</p>
+      </div>
+      <figure class="polaroid" style="--giro:2deg">
+        <div class="moldura" data-slot>
+          <img alt="" hidden>
+          <div class="vazio"><span class="coracao">♥</span><span class="dica">Toque para escolher uma foto</span></div>
+        </div>
+        <figcaption data-edit>O começo de tudo</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap cap inverso">
+      <div class="texto">
+        <h2 data-edit>Nosso primeiro jantar fora</h2>
+        <p class="data" data-edit>Nome do restaurante</p>
+        <p data-edit>Aquela noite foi especial desde o início. Descreva a mesa, a luz, o que você sentiu, o friozinho na barriga. Escreva do jeitinho que você falaria pessoalmente.</p>
+      </div>
+      <figure class="polaroid" style="--giro:-2.5deg">
+        <div class="moldura" data-slot>
+          <img alt="" hidden>
+          <div class="vazio"><span class="coracao">♥</span><span class="dica">Toque para escolher uma foto</span></div>
+        </div>
+        <figcaption data-edit>Uma noite especial</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="galeria-topo">
+        <h2 data-edit>A gente junto</h2>
+        <p data-edit>Os momentos que eu guardaria numa caixinha</p>
+      </div>
+      <div class="grade">
+        <figure class="polaroid"><div class="moldura" data-slot><img alt="" hidden><div class="vazio"><span class="coracao">♥</span><span class="dica">Toque para escolher uma foto</span></div></div><figcaption data-edit>Legenda</figcaption></figure>
+        <figure class="polaroid"><div class="moldura" data-slot><img alt="" hidden><div class="vazio"><span class="coracao">♥</span><span class="dica">Toque para escolher uma foto</span></div></div><figcaption data-edit>Legenda</figcaption></figure>
+        <figure class="polaroid"><div class="moldura" data-slot><img alt="" hidden><div class="vazio"><span class="coracao">♥</span><span class="dica">Toque para escolher uma foto</span></div></div><figcaption data-edit>Legenda</figcaption></figure>
+        <figure class="polaroid"><div class="moldura" data-slot><img alt="" hidden><div class="vazio"><span class="coracao">♥</span><span class="dica">Toque para escolher uma foto</span></div></div><figcaption data-edit>Legenda</figcaption></figure>
+        <figure class="polaroid"><div class="moldura" data-slot><img alt="" hidden><div class="vazio"><span class="coracao">♥</span><span class="dica">Toque para escolher uma foto</span></div></div><figcaption data-edit>Legenda</figcaption></figure>
+        <figure class="polaroid"><div class="moldura" data-slot><img alt="" hidden><div class="vazio"><span class="coracao">♥</span><span class="dica">Toque para escolher uma foto</span></div></div><figcaption data-edit>Legenda</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="motivos">
+    <h2 data-edit>Por que eu te amo</h2>
+    <ul class="lista-motivos">
+      <li data-edit>Porque você me faz rir até nos dias difíceis</li>
+      <li data-edit>Porque com você até o silêncio é confortável</li>
+      <li data-edit>Porque o seu jeito de cuidar de mim é só seu</li>
+      <li data-edit>Porque eu me sinto em casa ao seu lado</li>
+      <li data-edit>Porque você acredita em mim antes de mim</li>
+    </ul>
+  </section>
+
+  <section class="carta-area">
+    <div class="wrap">
+      <h2 data-edit>Uma carta para você</h2>
+      <p data-edit>Escrevi com calma. Abra quando estiver sozinho(a).</p>
+      <button id="abrir" type="button" aria-expanded="false" aria-controls="carta">Abrir carta</button>
+      <div class="carta" id="carta">
+        <div class="folha">
+          <p data-edit>Meu amor,</p>
+          <p data-edit>Desde o dia em que realmente te conheci, nunca mais quis nada que não fosse a gente. Cada dia ao seu lado é a minha parte favorita.</p>
+          <p data-edit>Escreva aqui o que você nunca teve coragem de dizer em voz alta. Pode ser longo, pode ser bobo, pode ser só a verdade.</p>
+          <p data-edit>Obrigado(a) por existir na minha vida. Feliz Dia dos Namorados.</p>
+          <p class="assin" data-edit>Com todo o meu amor, seu nome</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span class="coracao-final" aria-hidden="true">♥</span>
+  <p data-edit>Que o nosso sempre seja para sempre</p>
+</footer>
+
+<div id="luz" role="dialog" aria-label="Foto ampliada"><img alt=""></div>
+
+<!-- Barra de edição: aparece só no seu computador ou com #editar na URL -->
+<div id="barra">
+  <button type="button" id="b-editar">✏️ Editar</button>
+  <label>Data de início <input type="date" id="b-data"></label>
+  <button type="button" id="b-baixar" class="principal">Baixar site pronto</button>
+</div>
+<input type="file" id="arquivo" accept="image/*" hidden>
+
+<script>
+(function(){
+  var admin = location.protocol === 'file:' || location.hash === '#editar';
+  if (admin) document.body.classList.add('admin');
+
+  /* contador */
+  var cont = document.getElementById('contador');
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    var ini = new Date(cont.dataset.inicio + 'T00:00:00');
+    var diff = Math.max(0, Date.now() - ini.getTime());
+    var s = Math.floor(diff/1000);
+    document.getElementById('c-d').textContent = Math.floor(s/86400);
+    document.getElementById('c-h').textContent = pad(Math.floor(s%86400/3600));
+    document.getElementById('c-m').textContent = pad(Math.floor(s%3600/60));
+    document.getElementById('c-s').textContent = pad(s%60);
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* corações flutuantes */
+  var box = document.getElementById('coracoes');
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setInterval(function(){
+      var h = document.createElement('span');
+      h.textContent = '♥';
+      h.style.left = Math.random()*100 + 'vw';
+      h.style.fontSize = (10 + Math.random()*16) + 'px';
+      h.style.setProperty('--dx', (Math.random()*80-40) + 'px');
+      h.style.animationDuration = (9 + Math.random()*8) + 's';
+      box.appendChild(h);
+      setTimeout(function(){ h.remove(); }, 18000);
+    }, 900);
+  }
+
+  /* carta */
+  var btn = document.getElementById('abrir'), carta = document.getElementById('carta');
+  btn.addEventListener('click', function(){
+    var aberta = carta.classList.toggle('aberta');
+    btn.textContent = aberta ? 'Fechar carta' : 'Abrir carta';
+    btn.setAttribute('aria-expanded', aberta);
+  });
+
+  /* fotos */
+  var luz = document.getElementById('luz'), luzImg = luz.querySelector('img');
+  var input = document.getElementById('arquivo'), alvo = null;
+
+  function atualizarSlot(slot){
+    var img = slot.querySelector('img');
+    var tem = !!img.getAttribute('src');
+    img.hidden = !tem;
+    slot.classList.toggle('tem-foto', tem);
+  }
+  var slots = document.querySelectorAll('[data-slot]');
+  slots.forEach(atualizarSlot);
+
+  document.addEventListener('click', function(e){
+    var slot = e.target.closest('[data-slot]');
+    if (slot) {
+      if (document.body.classList.contains('editando')) { alvo = slot; input.click(); return; }
+      var img = slot.querySelector('img');
+      if (img.getAttribute('src')) { luzImg.src = img.src; luz.classList.add('on'); }
+      return;
+    }
+    if (e.target.closest('#luz')) luz.classList.remove('on');
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') luz.classList.remove('on'); });
+
+  input.addEventListener('change', function(){
+    var f = input.files[0]; if (!f || !alvo) return;
+    var r = new FileReader();
+    r.onload = function(){
+      var im = new Image();
+      im.onload = function(){
+        var max = 1200, k = Math.min(1, max/Math.max(im.width, im.height));
+        var c = document.createElement('canvas');
+        c.width = Math.round(im.width*k); c.height = Math.round(im.height*k);
+        c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
+        alvo.querySelector('img').src = c.toDataURL('image/jpeg', .82);
+        atualizarSlot(alvo);
+        input.value = '';
+      };
+      im.src = r.result;
+    };
+    r.readAsDataURL(f);
+  });
+
+  /* modo edição */
+  var bEditar = document.getElementById('b-editar'), bData = document.getElementById('b-data');
+  bData.value = cont.dataset.inicio;
+  bData.addEventListener('change', function(){ if (bData.value) { cont.dataset.inicio = bData.value; tick(); } });
+
+  function setEdicao(on){
+    document.body.classList.toggle('editando', on);
+    document.querySelectorAll('[data-edit]').forEach(function(el){
+      if (on) el.setAttribute('contenteditable','true'); else el.removeAttribute('contenteditable');
+    });
+    bEditar.classList.toggle('on', on);
+    bEditar.textContent = on ? '✓ Terminar edição' : '✏️ Editar';
+    if (on) carta.classList.add('aberta');
+  }
+  bEditar.addEventListener('click', function(){ setEdicao(!document.body.classList.contains('editando')); });
+  document.addEventListener('paste', function(e){
+    if (!e.target.closest('[contenteditable="true"]')) return;
+    e.preventDefault();
+    var t = (e.clipboardData || window.clipboardData).getData('text/plain');
+    document.execCommand('insertText', false, t);
+  });
+
+  /* exportar o site pronto */
+  document.getElementById('b-baixar').addEventListener('click', function(){
+    setEdicao(false);
+    carta.classList.remove('aberta'); btn.textContent = 'Abrir carta'; btn.setAttribute('aria-expanded','false');
+    var clone = document.documentElement.cloneNode(true);
+    clone.querySelector('#coracoes').innerHTML = '';
+    clone.querySelector('#luz').classList.remove('on');
+    clone.querySelector('body').classList.remove('admin','editando');
+    var html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    var blob = new Blob([html], {type:'text/html'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'index.html';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
+  });
+})();
+</script>
+</body>
+</html>
